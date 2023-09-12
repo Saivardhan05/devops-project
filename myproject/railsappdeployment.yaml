@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-app
+spec:
+  selector:
+    matchLabels:
+      app: rails-app
+  template:
+    metadata:
+      labels:
+        app: rails-app
+    spec:
+      containers:
+      - name: rails-app
+        image: saivardhan13/devops:budget
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          value: postgresql://myuser:mypassword@postgresql:5432/myapp_production
